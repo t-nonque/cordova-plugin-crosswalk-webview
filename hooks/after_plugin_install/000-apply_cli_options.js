@@ -39,7 +39,7 @@ module.exports = function(context) {
         et = context.requireCordovaModule('elementtree');
 
     /** @defaults */
-    var argumentsString = context.cmdLine,
+    var argumentsString = process.argv,
         pluginConfigurationFile = path.join(context.opts.plugin.dir, 'plugin.xml'),
         projectConfigurationFile = path.join(context.opts.projectRoot, 'config.xml'),
         projectManifestFile = path.join(context.opts.projectRoot,
@@ -87,7 +87,7 @@ module.exports = function(context) {
      */
     var cliPreferences = function() {
 
-        var commandlineVariablesList = nopt({ 'variable': Array }, {}, argumentsString.split(' '))['variable'],
+        var commandlineVariablesList = nopt({ 'variable': Array }, {}, argumentsString)['variable'],
             commandlineVariables = {};
 
         if (commandlineVariablesList) {
